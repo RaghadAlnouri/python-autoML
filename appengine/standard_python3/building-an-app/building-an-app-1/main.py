@@ -15,27 +15,26 @@
 # [START gae_python38_render_template]
 # [START gae_python3_render_template]
 import datetime
+from flask_inputs import Inputs
+from wtforms.validators import DataRequired
+from flask import Flask, render_template,  request
 
-from flask import Flask, render_template
 
 app = Flask(__name__)
 
 
-@app.route('/')
-def root():
-    # For the sake of example, use static information to inflate the template.
-    # This will be replaced with real information in later steps.
-    dummy_times = [
-        {"formatted_date": "2022-11-16",
-                "high": "116.80999755859376",
-                "low":"113.2300033569336",
-                "open":"115.0",
-                "close":"115.01000213623048",
-                "volume":"2081600.0",
-        }
-    ],
 
-    return render_template('index.html', times=dummy_times)
+@app.route('/')
+def my_form():
+    return render_template('INDEX.html')
+
+@app.route('/', methods=['Get', 'POST'])
+def Predict():
+    if request.method == 'POST':
+        ticker = request.form["ticker"]
+        if ticker in ['A','APPL','AMZN']:
+            return render_template('INDEX.html', Prediction = "Sell")
+    return render_template('INDEX.html', Prediction = "Buy")
 
 
 if __name__ == '__main__':

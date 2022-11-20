@@ -1,7 +1,14 @@
-<html>
-  <body>
-    <title>Buy/Sell Predictor</title><button type="button" id="Enter ticker" onclick="predictTablesClassification()"> Enter Ticker  </button>
-    <input type="text" id="ticker" name="ticker">
-    <script src= "index.js"></script>
-  </body>
+<!doctype html>
+<title>Buy/Sell Predictor</title>
+<h1>Enter Ticker</h1> 
+<form method="POST" enctype="multipart/form-data">
+  <input type=text name=ticker>
+  <input type="submit" value=Predict>
+  <br>
+  <h3>Prediction: {{Prediction}}</h3>
+</form>
+
+
+<script src= "index.js"></script>
+</body>
 </html>
