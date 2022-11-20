@@ -1,0 +1,16 @@
+type: object
+properties:
+  formatted_date:
+    type: number
+  high:
+    type: number
+  low:
+    type: number
+  open:
+    type: number
+  close:
+    type: number
+  volume:
+    type: number
+  ticker:
+    type: number
