@@ -51,7 +51,9 @@ def Pred(ticker=ticker):
                     'AEE',
                     'AEP',
                     'AES',
-                    'AFL']:
+                    'AFL',
+                    'META',
+                    'TSLA']:
                     Prediction = "Sell"
         elif ticker in ['AIG',
                         'AIZ',
@@ -76,9 +78,14 @@ def Pred(ticker=ticker):
                         'AOS',
                         'APA',
                         'APD',
-                        'APH']:
+                        'APH',
+                        'ZM',
+                        'DELL',
+                        'SOFI',
+                        'CENT']:
                         Prediction = "Buy"
         else:    Prediction = "error"
+    else: render_template('INDEX.html',pred = "error")
     return render_template('INDEX.html', pred = Prediction)
     
 if __name__ == '__main__':    
