@@ -14,30 +14,74 @@
 
 # [START gae_python38_render_template]
 # [START gae_python3_render_template]
-import datetime
-from flask_inputs import Inputs
-from wtforms.validators import DataRequired
+
 from flask import Flask, render_template,  request
 
 
 app = Flask(__name__)
 
+ticker = None
 
 
 @app.route('/')
 def my_form():
     return render_template('INDEX.html')
 
+
+
 @app.route('/', methods=['Get', 'POST'])
-def Predict():
+def Pred(ticker=ticker):
     if request.method == 'POST':
         ticker = request.form["ticker"]
-        if ticker in ['A','APPL','AMZN']:
-            return render_template('INDEX.html', Prediction = "Sell")
-    return render_template('INDEX.html', Prediction = "Buy")
-
-
-if __name__ == '__main__':
+        if ticker in ['A',
+                    'AAL',
+                    'AAP',
+                    'AAPL',
+                    'ABBV',
+                    'ABC',
+                    'ABMD',
+                    'ABT',
+                    'ACGL',
+                    'ACN',
+                    'ADBE',
+                    'ADI',
+                    'ADM',
+                    'ADP',
+                    'ADSK',
+                    'AEE',
+                    'AEP',
+                    'AES',
+                    'AFL']:
+                    Prediction = "Sell"
+        elif ticker in ['AIG',
+                        'AIZ',
+                        'AJG',
+                        'AKAM',
+                        'ALB',
+                        'ALGN',
+                        'ALK',
+                        'ALL',
+                        'ALLE',
+                        'AMAT',
+                        'AMCR',
+                        'AMD',
+                        'AME',
+                        'AMGN',
+                        'AMP',
+                        'AMT',
+                        'AMZN',
+                        'ANET',
+                        'ANSS',
+                        'AON',
+                        'AOS',
+                        'APA',
+                        'APD',
+                        'APH']:
+                        Prediction = "Buy"
+        else:    Prediction = "error"
+    return render_template('INDEX.html', pred = Prediction)
+    
+if __name__ == '__main__':    
     # This is used when running locally only. When deploying to Google App
     # Engine, a webserver process such as Gunicorn will serve the app. This
     # can be configured by adding an `entrypoint` to app.yaml.
@@ -46,5 +90,6 @@ if __name__ == '__main__':
     # http://flask.pocoo.org/docs/1.0/quickstart/#static-files. Once deployed,
     # App Engine itself will serve those files as configured in app.yaml.
     app.run(host='127.0.0.1', port=8080, debug=True)
-# [END gae_python3_render_template]
+    
+#[END gae_python3_render_template]
 # [END gae_python38_render_template]

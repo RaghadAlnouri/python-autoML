@@ -13,19 +13,13 @@
 # limitations under the License.
 
 runtime: python39
-env: standard
-instance_class: F1
+entrypoint: gunicorn -b :$PORT main:app
 handlers:
-  - url: /static/(.*)
-    static_files: static/\1
-    upload: static/.*
-  - url: /.*
-    script: auto
-  - url: .*
-    script: auto
-automatic_scaling:
-  min_idle_instances: automatic
-  max_idle_instances: automatic
-  min_pending_latency: automatic
-  max_pending_latency: automatic
-service_account: nlp-course-362518@appspot.gserviceaccount.com
+- url: /
+  static_files: index.html
+  upload: index.html
+
+- url: /(.*)/$
+  static_files: \1/index.html
+  upload: .*/index.html
+
